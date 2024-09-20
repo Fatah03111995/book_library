@@ -3,6 +3,7 @@ import 'package:book_library/models/enum.dart';
 
 class BookModel {
   final String bookId;
+  final String imageUrl;
   final String title;
   final String author;
   final String isbn;
@@ -13,6 +14,7 @@ class BookModel {
 
   BookModel(
       {required this.bookId,
+      required this.imageUrl,
       required this.title,
       required this.author,
       required this.isbn,
