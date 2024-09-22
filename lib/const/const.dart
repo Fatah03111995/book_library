@@ -1,4 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-TextStyle defaultTxt = GoogleFonts.poppins(fontWeight: FontWeight.normal);
+TextStyle defaultTxt =
+    const TextStyle(fontWeight: FontWeight.normal, fontFamily: 'poppins');

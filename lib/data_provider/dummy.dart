@@ -18,7 +18,7 @@ class Dummy {
             'Saat hukum dan kekuasaan dipegang oleh serigala-serigala buas berbulu domba, saat seluruh segeri dikangkangi orang-orang jualan sok sedeharna tapi sejatinya serakah.' +
                 ' Apakah kalian akan tutup mata, tutup mulut, tidak peduli dengan apa yang terjadi? Atau kalian akan mengepalkan tangan ke udara, LAWAN!',
         category: Category.fiksi,
-        availability: Availability.available),
+        availability: Availability.borrowed),
     BookModel(
       imageUrl: 'assets/02.jpg',
       bookId: '02',
