@@ -2,71 +2,36 @@ import 'package:book_library/const/const.dart';
 import 'package:book_library/models/book_model.dart';
 import 'package:book_library/models/enum.dart';
 import 'package:book_library/util/util.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class BookCard extends StatelessWidget {
   final BookModel book;
-  const BookCard({super.key, required this.book});
+  final List<String> favBooks;
+  final Function(String) toggleFav;
+  const BookCard(
+      {super.key,
+      required this.book,
+      required this.favBooks,
+      required this.toggleFav});
 
   @override
   Widget build(BuildContext context) {
-    Util util = Util(context: context);
-
-    double height = 100;
-    if (util.isPhone) {
-      height += (util.width * 5 / 100);
-      if (util.width > 250) {
-        height += (util.width * 30 / 100);
-      }
-      if (util.width > 350) {
-        height += (util.width * 10 / 100);
-      }
-
-      height = clampDouble(height, 100, 250);
-    }
-    if (util.isTablet) {
-      height = 100;
-      height += (util.width * 5 / 100);
-      if (util.width > 550) {
-        height += (util.width * 5 / 100);
-      }
-      if (util.width > 650) {
-        height += (util.width * 10 / 100);
-      }
-
-      if (util.width > 750) {
-        height += (util.width * 5 / 100);
-      }
-
-      height = clampDouble(height, 130, 200);
-    }
-    if (util.isPc) {
-      height = 100;
-      height += (util.width * 5 / 100);
-      if (util.width > 850) {
-        height += (util.width * 5 / 100);
-      }
-      if (util.width > 1150) {
-        height += (util.width * 5 / 100);
-      }
-      height = clampDouble(height, 100, 250);
-    }
-
     return Card(
       clipBehavior: Clip.hardEdge,
-      child: Column(
+      child: Stack(
         children: [
-          Container(
-            height: height,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage(book.imageUrl),
-              fit: BoxFit.cover,
-            )),
-            child: book.availability == Availability.borrowed
-                ? Container(
-                    height: height,
+          Image.asset(
+            height: double.infinity,
+            book.imageUrl,
+            fit: BoxFit.cover,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (book.availability == Availability.borrowed)
+                Expanded(
+                  child: Container(
                     color: Colors.black.withOpacity(0.5),
                     alignment: Alignment.center,
                     child: Text(
@@ -76,17 +41,40 @@ class BookCard extends StatelessWidget {
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
-                  )
-                : null,
-          ),
-          Expanded(
-            child: Center(
-              child: Text(
-                book.title,
-                textAlign: TextAlign.center,
+                  ),
+                ),
+              Container(
+                height: 70 + Util(context: context).width / 400 * 10,
+                color: Colors.black.withOpacity(0.9),
+                padding: const EdgeInsets.all(8),
+                alignment: Alignment.center,
+                child: Text(
+                  book.title,
+                  textAlign: TextAlign.center,
+                  style: defaultTxt.copyWith(
+                    fontSize: 12,
+                    color: Colors.white,
+                    letterSpacing: 1.5,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
+          Align(
+            alignment: AlignmentDirectional.topEnd,
+            child: IconButton(
+              icon: Icon(
+                Icons.favorite,
+                color: favBooks.contains(book.bookId)
+                    ? Colors.red
+                    : Colors.black.withOpacity(0.7),
+              ),
+              onPressed: () {
+                toggleFav(book.bookId);
+              },
+            ),
+          )
         ],
       ),
     );

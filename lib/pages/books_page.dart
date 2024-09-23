@@ -1,15 +1,14 @@
-import 'package:book_library/const/const.dart';
 import 'package:book_library/models/book_model.dart';
 import 'package:book_library/util/util.dart';
 import 'package:book_library/widget/book_card.dart';
 import 'package:flutter/material.dart';
 
-class FavouritePage extends StatelessWidget {
+class BooksPage extends StatelessWidget {
   final Util util;
   final List<BookModel> books;
   final List<String> favBooks;
   final Function(String) toggleFav;
-  const FavouritePage(
+  const BooksPage(
       {super.key,
       required this.util,
       required this.books,
@@ -20,21 +19,9 @@ class FavouritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     //-------------------MAIN SECTION
 
-    //------------------IF LIST IS EMPTY
-    if (books.isEmpty) {
-      return Expanded(
-          child: Center(
-        child: Text('There is no Data Here !',
-            textAlign: TextAlign.center,
-            style: defaultTxt.copyWith(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.black)),
-      ));
-    }
-
     //-------------------IF PHONE DEVICE
     if (util.isPhone) {
+      print('phone');
       return Expanded(
         child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -53,12 +40,13 @@ class FavouritePage extends StatelessWidget {
       );
     }
 
-    //-------------------IF TABLET DEVICE
     if (util.isTablet) {
-      Expanded(
+      print('tablet');
+      //-------------------IF TABLET DEVICE
+      return Expanded(
         child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
+                crossAxisCount: 3,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5,
                 childAspectRatio: 0.5),
@@ -73,12 +61,11 @@ class FavouritePage extends StatelessWidget {
       );
     }
 
-    // ----------------IF PC OR HIGHER
-
     return Expanded(
+      // ----------------IF PC OR HIGHER
       child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 7,
+              crossAxisCount: 5,
               mainAxisSpacing: 5,
               crossAxisSpacing: 5,
               childAspectRatio: 0.5),

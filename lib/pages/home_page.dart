@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:book_library/const/const.dart';
 import 'package:book_library/data_provider/dummy.dart';
 import 'package:book_library/models/book_model.dart';
+import 'package:book_library/pages/books_page.dart';
+import 'package:book_library/pages/favourite_page.dart';
 import 'package:book_library/util/util.dart';
-import 'package:book_library/widget/book_card.dart';
 import 'package:book_library/widget/menu_nav_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +18,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<BookModel> books = Dummy.books;
+  List<String> favBooks = [];
   int index = 0;
+
+  void toggleFav(String bookId) {
+    setState(() {
+      if (favBooks.contains(bookId)) {
+        favBooks.remove(bookId);
+      } else {
+        favBooks.add(bookId);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Util util = Util(context: context);
@@ -29,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               width: double.infinity,
               height: util.isPhone ? 120 : 80,
-              color: Colors.blue,
+              color: Colors.lightBlue,
               child: Column(
                 children: [
                   const SizedBox(height: 20),
@@ -42,7 +57,9 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         'Book Library',
                         style: defaultTxt.copyWith(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
                       ),
                       if (!util.isPhone)
                         SizedBox(
@@ -74,55 +91,31 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 20),
 
-            //-------------------MAIN SECTION
-
-            //-------------------IF PHONE DEVICE
-            if (util.isPhone)
-              Expanded(
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 5,
-                            crossAxisSpacing: 5,
-                            childAspectRatio: 0.5),
-                    itemCount: books.length,
-                    itemBuilder: (context, index) {
-                      return BookCard(book: books[index]);
+            //----------------MAIN SECTION
+            Expanded(
+              child: SizedBox(
+                width: util.width * 0.8,
+                child: Column(children: [
+                  if (index == 0)
+                    BooksPage(
+                        util: util,
+                        books: books,
+                        favBooks: favBooks,
+                        toggleFav: toggleFav),
+                  if (index == 1)
+                    Builder(builder: (context) {
+                      List<BookModel> filteredBooks = [
+                        ...books.where((book) => favBooks.contains(book.bookId))
+                      ];
+                      return FavouritePage(
+                          util: util,
+                          books: filteredBooks,
+                          favBooks: favBooks,
+                          toggleFav: toggleFav);
                     }),
+                ]),
               ),
-
-            //-------------------IF TABLET DEVICE
-            if (util.isTablet)
-              Expanded(
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            mainAxisSpacing: 5,
-                            crossAxisSpacing: 5,
-                            childAspectRatio: 0.5),
-                    itemCount: books.length,
-                    itemBuilder: (context, index) {
-                      return BookCard(book: books[index]);
-                    }),
-              ),
-
-            // ----------------IF PC OR HIGHER
-            if (util.isPc)
-              Expanded(
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 7,
-                            mainAxisSpacing: 5,
-                            crossAxisSpacing: 5,
-                            childAspectRatio: 0.5),
-                    itemCount: books.length,
-                    itemBuilder: (context, index) {
-                      return BookCard(book: books[index]);
-                    }),
-              ),
+            )
           ],
         ),
       )),
