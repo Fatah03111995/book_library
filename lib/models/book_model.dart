@@ -22,4 +22,28 @@ class BookModel {
       required this.description,
       required this.category,
       required this.availability});
+
+  BookModel copyWith({
+    String? bookId,
+    String? imageUrl,
+    String? title,
+    String? author,
+    String? isbn,
+    String? penerbit,
+    String? description,
+    Category? category,
+    Availability? availability,
+  }) {
+    return BookModel(
+      bookId: bookId ?? this.bookId,
+      imageUrl: imageUrl ?? this.imageUrl,
+      title: title ?? this.title,
+      author: author ?? this.author,
+      isbn: isbn ?? this.isbn,
+      penerbit: penerbit ?? this.penerbit,
+      description: description ?? this.description,
+      category: category ?? this.category,
+      availability: availability ?? this.availability,
+    );
+  }
 }

@@ -21,7 +21,6 @@ class BooksPage extends StatelessWidget {
 
     //-------------------IF PHONE DEVICE
     if (util.isPhone) {
-      print('phone');
       return Expanded(
         child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -41,7 +40,6 @@ class BooksPage extends StatelessWidget {
     }
 
     if (util.isTablet) {
-      print('tablet');
       //-------------------IF TABLET DEVICE
       return Expanded(
         child: GridView.builder(

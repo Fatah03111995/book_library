@@ -55,7 +55,7 @@ class FavouritePage extends StatelessWidget {
 
     //-------------------IF TABLET DEVICE
     if (util.isTablet) {
-      Expanded(
+      return Expanded(
         child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,

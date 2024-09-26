@@ -33,60 +33,85 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Util util = Util(context: context);
+    Util util = Util(context);
     return Scaffold(
+      backgroundColor: Colors.lightBlue,
       body: SafeArea(
           child: Center(
         child: Column(
           children: [
             //-------------NAVBAR
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              width: double.infinity,
-              height: util.isPhone ? 120 : 80,
-              color: Colors.lightBlue,
-              child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: util.isPhone
-                        ? MainAxisAlignment.center
-                        : MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Book Library',
-                        style: defaultTxt.copyWith(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      if (!util.isPhone)
-                        SizedBox(
-                          width: 150,
-                          child: MenuNavBar(
-                              activeIndex: index,
-                              changeIndex: (ind) {
-                                setState(() {
-                                  index = ind;
-                                });
-                              }),
-                        )
-                    ],
-                  ),
-                  if (util.isPhone) const SizedBox(height: 10),
-                  if (util.isPhone)
-                    SizedBox(
-                      width: util.width,
-                      child: MenuNavBar(
-                          activeIndex: index,
-                          changeIndex: (ind) {
-                            setState(() {
-                              index = ind;
-                            });
-                          }),
-                    )
-                ],
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                width: double.infinity,
+                height: util.isPhone ? 120 : 80,
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(20),
+                    ),
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Colors.white.withOpacity(0.5),
+                        Colors.white.withOpacity(0.1)
+                      ],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10,
+                      )
+                    ]),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: util.isPhone
+                          ? MainAxisAlignment.center
+                          : MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Book Library',
+                            textAlign: TextAlign.center,
+                            style: defaultTxt.copyWith(
+                              letterSpacing: 3,
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                        if (!util.isPhone)
+                          SizedBox(
+                            width: 150,
+                            child: MenuNavBar(
+                                activeIndex: index,
+                                changeIndex: (ind) {
+                                  setState(() {
+                                    index = ind;
+                                  });
+                                }),
+                          )
+                      ],
+                    ),
+                    if (util.isPhone) const SizedBox(height: 10),
+                    if (util.isPhone)
+                      SizedBox(
+                        width: util.width,
+                        child: MenuNavBar(
+                            activeIndex: index,
+                            changeIndex: (ind) {
+                              setState(() {
+                                index = ind;
+                              });
+                            }),
+                      )
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 20),

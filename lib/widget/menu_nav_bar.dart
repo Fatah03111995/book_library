@@ -1,5 +1,4 @@
 import 'package:book_library/const/const.dart';
-import 'package:book_library/util/util.dart';
 import 'package:flutter/material.dart';
 
 class MenuNavBar extends StatelessWidget {
@@ -24,24 +23,50 @@ class MenuNavBar extends StatelessWidget {
           onTap: () {
             changeIndex(index);
           },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              Icon(
-                navItems[index].icon,
-                color: index == activeIndex ? Colors.white : Colors.grey,
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                width: 40,
+                height: 30,
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                    color: index == activeIndex
+                        ? Colors.black.withOpacity(0.3)
+                        : Colors.transparent,
+                    blurRadius: 10,
+                  )
+                ], borderRadius: BorderRadius.circular(10)),
               ),
-              if (index == activeIndex) const SizedBox(height: 5),
-              if (index == activeIndex)
-                Text(
-                  navItems[index].name,
-                  style: defaultTxt.copyWith(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold),
-                ),
-              const SizedBox(height: 5),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    navItems[index].icon,
+                    color: index == activeIndex
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.6),
+                  ),
+                  if (index == activeIndex) const SizedBox(height: 5),
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 500),
+                    width: index == activeIndex ? null : 0,
+                    height: index == activeIndex ? null : 0,
+                    child: Text(
+                      navItems[index].name,
+                      textAlign: TextAlign.center,
+                      style: defaultTxt.copyWith(
+                        letterSpacing: 2,
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                ],
+              ),
             ],
           ),
         ));
