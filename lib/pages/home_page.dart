@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   List<BookModel> books = Dummy.books;
   List<String> favBooks = [];
   int index = 0;
+  TextEditingController searchController = TextEditingController();
 
   void toggleFav(String bookId) {
     setState(() {
@@ -29,6 +30,12 @@ class _HomePageState extends State<HomePage> {
         favBooks.add(bookId);
       }
     });
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -121,6 +128,21 @@ class _HomePageState extends State<HomePage> {
               child: SizedBox(
                 width: util.width * 0.8,
                 child: Column(children: [
+                  if (index == 0)
+                    SizedBox(
+                      width: 0.5 * util.width,
+                      child: TextField(
+                        controller: searchController,
+                        decoration: InputDecoration(
+                            hintText: 'Find Your Favorite Book Here ...',
+                            hintStyle: defaultTxt,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.5),
+                            suffixIcon: IconButton(
+                                onPressed: () {}, icon: Icon(Icons.search))),
+                      ),
+                    ),
+                  if (index == 0) const SizedBox(height: 20),
                   if (index == 0)
                     BooksPage(
                         util: util,

@@ -1,7 +1,5 @@
 import 'package:book_library/const/const.dart';
-import 'package:book_library/data_provider/dummy.dart';
 import 'package:book_library/models/book_model.dart';
-import 'package:book_library/models/enum.dart';
 import 'package:book_library/util/util.dart';
 import 'package:book_library/widget/book_detail_phone.dart';
 import 'package:book_library/widget/book_detail_pc.dart';
@@ -48,7 +46,7 @@ class DetailPage extends StatelessWidget {
                       height: 2,
                       fontSize: 12,
                     )),
-                Text(book!.author,
+                Text(book.author,
                     style: defaultTxt.copyWith(
                         fontSize: util.isPc ? 14 : 12,
                         letterSpacing: 1.5,
@@ -87,7 +85,7 @@ class DetailPage extends StatelessWidget {
                       height: 2,
                       fontSize: 12,
                     )),
-                Text(book!.isbn,
+                Text(book.isbn,
                     style: defaultTxt.copyWith(
                         fontSize: util.isPc ? 14 : 12,
                         letterSpacing: 1.5,
@@ -126,7 +124,7 @@ class DetailPage extends StatelessWidget {
                       height: 2,
                       fontSize: 12,
                     )),
-                Text(book!.penerbit,
+                Text(book.penerbit,
                     style: defaultTxt.copyWith(
                         fontSize: util.isPc ? 14 : 12,
                         height: 2,
