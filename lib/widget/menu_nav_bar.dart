@@ -33,9 +33,9 @@ class MenuNavBar extends StatelessWidget {
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(
                     color: index == activeIndex
-                        ? Colors.black.withOpacity(0.3)
+                        ? Colors.white.withOpacity(0.3)
                         : Colors.transparent,
-                    blurRadius: 10,
+                    blurRadius: 3,
                   )
                 ], borderRadius: BorderRadius.circular(10)),
               ),

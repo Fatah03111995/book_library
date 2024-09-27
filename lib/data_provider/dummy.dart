@@ -2,10 +2,8 @@
 
 import 'package:book_library/models/book_model.dart';
 import 'package:book_library/models/enum.dart';
-import 'package:book_library/models/user_model.dart';
 
 class Dummy {
-  static List<UserModel> users = [];
   static List<BookModel> books = [
     BookModel(
         imageUrl: 'assets/01.jpg',
@@ -18,7 +16,7 @@ class Dummy {
             'Saat hukum dan kekuasaan dipegang oleh serigala-serigala buas berbulu domba, saat seluruh segeri dikangkangi orang-orang jualan sok sedeharna tapi sejatinya serakah.' +
                 ' Apakah kalian akan tutup mata, tutup mulut, tidak peduli dengan apa yang terjadi? Atau kalian akan mengepalkan tangan ke udara, LAWAN!',
         category: Category.fiksi,
-        availability: Availability.borrowed),
+        availability: Availability.available),
     BookModel(
       imageUrl: 'assets/02.jpg',
       bookId: '02',

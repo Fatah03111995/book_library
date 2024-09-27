@@ -29,10 +29,13 @@ class BookCard extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         child: Stack(
           children: [
-            Image.asset(
-              height: double.infinity,
-              book.imageUrl,
-              fit: BoxFit.cover,
+            Hero(
+              tag: book.bookId,
+              child: Image.asset(
+                height: double.infinity,
+                book.imageUrl,
+                fit: BoxFit.cover,
+              ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
