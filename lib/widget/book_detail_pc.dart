@@ -78,6 +78,7 @@ class BookDetailPc extends StatelessWidget {
                               fit: BoxFit.cover,
                               height: util.width * 0.2 * 1.3,
                             ),
+                            const SizedBox(height: 20),
                             ...bookInfo,
                           ],
                         ),

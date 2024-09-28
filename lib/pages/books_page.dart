@@ -1,3 +1,4 @@
+import 'package:book_library/const/const.dart';
 import 'package:book_library/models/book_model.dart';
 import 'package:book_library/util/util.dart';
 import 'package:book_library/widget/book_card.dart';
@@ -18,6 +19,19 @@ class BooksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //-------------------MAIN SECTION
+
+    if (books.isEmpty) {
+      return Expanded(
+        child: Center(
+          child: Text('Not Found',
+              textAlign: TextAlign.center,
+              style: defaultTxt.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black)),
+        ),
+      );
+    }
 
     //-------------------IF PHONE DEVICE
     if (util.isPhone) {

@@ -67,7 +67,10 @@ class Dummy {
       author: 'Tere Liye',
       isbn: '6238882212',
       penerbit: 'Sabakgrip',
-      description: 'description',
+      description:
+          'Kerja sama. Kerja sama. Kerja sama adalah kunci mengatasi banyak masalah. Malam itu, serigala buas melolong mendatangi perkebunan jagung untuk memangsa hewan' +
+              ' ternak. Bebek ber-kwek kwek kwek ketakutan. Ayam ber-petok petok petok lari. Kambing mengembik gemetar. Semua panik! Aduh, apa yang harus mereka lakukan? Kerja sama.' +
+              ' Jika kalian ingin mengalahkan musuh yang lebih kuat. Mengatasi masalah yang lebih besar. Mari bekerja sama, maka kita akan lebih mudah mengatasinya.',
       category: Category.fiksi,
       availability: Availability.available,
     ),
@@ -141,14 +144,7 @@ class Dummy {
             'bukan aturan. David Epstein meneliti atlet, seniman, musisi, penemu, peramal, dan ilmuwan paling sukses di dunia. Ia menemukan bahwa di sebagian besar bidang—terutama ' +
             'yang kompleks dan tak terduga—yang lebih unggul adalah generalis, bukan spesialis. Generalis sering kali terlambat menemukan jalur mereka dan mencoba banyak bidang, ' +
             'bukannya berfokus pada satu bidang. Mereka juga lebih kreatif, lebih gesit, dan mampu membuat kaitan-kaitan yang tidak bisa dilihat oleh para spesialis. ' +
-            'Provokatif, mendetail, dan mengasyikkan, Range menyajikan gagasan yang menarik tentang secara aktif mengolah ketidakefisienan. Gagal adalah cara terbaik untuk belajar. ' +
-            'Orang yang sering mengalami kegagalan pada akhirnya memiliki karier yang paling memuaskan. Para penemu yang paling berdampak mempelajari berbagai bidang, bukan hanya ' +
-            'memperdalam pengetahuan di satu bidang tertentu. Ketika sejumlah pakar mengotak-ngotakkan keahlian, sementara komputer memiliki kemampuan lebih banyak bila dioperasikan ' +
-            'oleh orang-orang yang sangat berfokus, orang yang berpikir secara luas serta merangkul keberagaman pengalaman dan perspektif akan semakin berkembang. “Range adalah buku ' +
-            'yang krusial dan penting; bacaan wajib bagi pemimpin, orangtua, pelatih, dan siapa saja yang peduli dengan peningkatan kinerja.” —Daniel H. Pink, penulis When dan Drive ' +
-            '“Pembahasan yang ditulis dengan baik dan didukung dengan fakta tentang orang-orang yang terlambat mulai…. Seperti ditunjukkan oleh David Epstein, memupuk keragaman ' +
-            'menyiapkan kita menghadapi hal yang tak terduga.” —Wall Street Journal “Menghabiskan berjam-jam ditemani penulis seberbakat David Epstein adalah kebahagiaan. ' +
-            'Dan kebahagiaan ini bertambah saat dia berbagi begitu banyak informasi penting dan inspiratif tentang kinerja, keberhasilan, serta pendidikan.” —Susan Cain, penulis Quiet',
+            ' —Susan Cain, penulis Quiet',
         category: Category.nonFiksi,
         availability: Availability.available)
   ];

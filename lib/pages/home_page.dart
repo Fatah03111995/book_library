@@ -18,6 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<BookModel> books = Dummy.books;
+  List<BookModel> searchedBooks = [];
   List<String> favBooks = [];
   int index = 0;
   TextEditingController searchController = TextEditingController();
@@ -129,26 +130,51 @@ class _HomePageState extends State<HomePage> {
                 width: util.width * 0.8,
                 child: Column(children: [
                   if (index == 0)
+
+                    //-----------SEARCH INPUT
                     SizedBox(
                       width: 0.5 * util.width,
                       child: TextField(
                         controller: searchController,
                         decoration: InputDecoration(
-                            hintText: 'Find Your Favorite Book Here ...',
+                            hintText: 'Search...',
                             hintStyle: defaultTxt,
                             filled: true,
                             fillColor: Colors.white.withOpacity(0.5),
                             suffixIcon: IconButton(
-                                onPressed: () {}, icon: Icon(Icons.search))),
+                                onPressed: () {
+                                  setState(() {
+                                    searchedBooks = [
+                                      ...Dummy.books.where((book) {
+                                        return book.title
+                                                .toLowerCase()
+                                                .contains(searchController.text
+                                                    .toLowerCase()) ||
+                                            book.author.toLowerCase().contains(
+                                                searchController.text
+                                                    .toLowerCase()) ||
+                                            book.penerbit
+                                                .toLowerCase()
+                                                .contains(searchController.text
+                                                    .toLowerCase());
+                                      })
+                                    ];
+                                  });
+                                },
+                                icon: const Icon(Icons.search))),
                       ),
                     ),
                   if (index == 0) const SizedBox(height: 20),
                   if (index == 0)
                     BooksPage(
                         util: util,
-                        books: books,
+                        books: searchController.text.isEmpty
+                            ? books
+                            : searchedBooks,
                         favBooks: favBooks,
                         toggleFav: toggleFav),
+
+                  //------------FAVOURITE PAGE
                   if (index == 1)
                     Builder(builder: (context) {
                       List<BookModel> filteredBooks = [
